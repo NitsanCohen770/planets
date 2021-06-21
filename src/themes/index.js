@@ -1,0 +1,8 @@
+export { earthTheme } from "./earthTheme"
+export { jupiterTheme } from "./jupiterTheme"
+export { marsTheme } from "./marsTheme"
+export { mercuryTheme } from "./mercuryTheme"
+export { neptuneTheme } from "./neptuneTheme"
+export { saturnTheme } from "./saturnTheme"
+export { uranusTheme } from "./uranusTheme"
+export { venusTheme } from "./venusTheme"

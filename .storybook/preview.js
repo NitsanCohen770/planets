@@ -1,9 +1,50 @@
 import { action } from "@storybook/addon-actions"
+import { addDecorator } from "@storybook/react"
+import { withThemes } from "@react-theming/storybook-addon"
+import { ThemeProvider } from "styled-components"
 
-// Gatsby's Link overrides:
-// Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
-// This global object isn't set in storybook context, requiring you to override it to empty functions (no-op),
-// so Gatsby Link doesn't throw any errors.
+import {
+  neptuneTheme,
+  uranusTheme,
+  earthTheme,
+  marsTheme,
+  saturnTheme,
+  mercuryTheme,
+  jupiterTheme,
+  venusTheme,
+} from "../src/themes"
+
+export const parameters = {
+  backgrounds: {
+    default: "default",
+    values: [
+      {
+        name: "default",
+        value: "#070724",
+      },
+    ],
+  },
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+}
+// addDecorator(
+//   withThemes(ThemeProvider, [
+//     neptuneTheme,
+//     uranusTheme,
+//     earthTheme,
+//     marsTheme,
+//     saturnTheme,
+//     mercuryTheme,
+//     jupiterTheme,
+//     venusTheme,
+//   ])
+// )
+
 global.___loader = {
   enqueue: () => {},
   hovering: () => {},
@@ -16,14 +57,4 @@ global.__BASE_PATH__ = "/"
 
 window.___navigate = pathname => {
   action("NavigateTo:")(pathname)
-}
-
-export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
-  controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
-    },
-  },
 }
