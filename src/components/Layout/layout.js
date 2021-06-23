@@ -14,22 +14,37 @@ import { ThemeProvider } from "styled-components"
 import PlanetViewer from "../PlanetViewer/PlanetViewer"
 
 const Layout = ({ children, theme, path }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
+  const imagesPath = useStaticQuery(graphql`
+    query SiteImageLinks {
+      allFile {
+        nodes {
+          name
+          publicURL
         }
       }
     }
   `)
-
+  console.log(imagesPath)
+  const internalURL = imagesPath.allFile.nodes.filter(({ name }) =>
+    name.includes("internal")
+  )
+  const geologyURL = imagesPath.allFile.nodes.filter(({ name }) =>
+    name.includes("geology")
+  )
+  const planetURL = imagesPath.allFile.nodes.filter(
+    ({ name }) => name.includes("planet") && !name.includes("internal")
+  )
+  console.log(planetURL)
   return (
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <NavBar path={path} />
-        <PlanetViewer />
+        <PlanetViewer
+          planetImages={planetURL}
+          internalImages={internalURL}
+          geologyImages={geologyURL}
+        />
         {children}
       </ThemeProvider>
     </>
