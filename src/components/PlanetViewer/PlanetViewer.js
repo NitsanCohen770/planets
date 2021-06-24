@@ -9,6 +9,10 @@ const PlanetViewer = ({ planetImages, internalImages, geologyImages }) => {
   )
 }
 
-PlanetViewer.propTypes = {}
+PlanetViewer.propTypes = {
+  planetImages: PropTypes.object.isRequired,
+  internalImages: PropTypes.object.isRequired,
+  geologyImages: PropTypes.object.isRequired,
+}
 
 export default PlanetViewer
