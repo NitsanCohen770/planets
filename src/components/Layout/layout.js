@@ -12,11 +12,9 @@ import { GlobalStyles } from "./globalStlyes"
 import NavBar from "../NavBar/NabBar"
 import { ThemeProvider } from "styled-components"
 import PlanetViewer from "../PlanetViewer/PlanetViewer"
-import Button from "../Button/Button"
+import DataView from "../DataView/DataView"
 
 const Layout = ({ children, theme, path }) => {
-  console.log(theme)
-  console.log(path)
   const imagesPath = useStaticQuery(graphql`
     query SiteImageLinks {
       allFile {
@@ -36,7 +34,6 @@ const Layout = ({ children, theme, path }) => {
   const planetURL = imagesPath.allFile.nodes.filter(
     ({ name }) => name.includes("planet") && !name.includes("internal")
   )
-  console.log(planetURL)
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -48,7 +45,7 @@ const Layout = ({ children, theme, path }) => {
           geologyImages={geologyURL}
         />
         {children}
-        <Button mainText="Testing" subText="Tester"></Button>
+        <DataView />
       </ThemeProvider>
     </>
   )
