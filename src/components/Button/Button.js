@@ -3,8 +3,17 @@ import PropTypes from "prop-types"
 import { StyledButton } from "./Styles"
 
 const Button = ({ size, width, height, mainText, subText }) => {
+  const dataChangeHandler = () => {
+    const section = mainText
+    const imageIndex = subText
+  }
   return (
-    <StyledButton size={size} width={width} height={height}>
+    <StyledButton
+      onClick={dataChangeHandler}
+      size={size}
+      width={width}
+      height={height}
+    >
       <div>{subText}</div>
       <div>{mainText}</div>
     </StyledButton>

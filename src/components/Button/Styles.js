@@ -1,14 +1,20 @@
 import styled from "styled-components"
 
 export const StyledButton = styled.div`
+  background-color: ${props => props.isActive && props.theme.color};
+  cursor: pointer;
   mix-blend-mode: normal;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
   width: 281px;
+  margin-bottom: 16px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  &:hover {
+    background-color: rgba(216, 216, 216, 0.2);
+  }
   > div:first-child {
     display: block;
     margin-right: 25px;
@@ -20,6 +26,8 @@ export const StyledButton = styled.div`
     letter-spacing: 1.92857px;
     text-transform: uppercase;
     color: #ffffff;
+    opacity: 0.5;
+    padding-left: 28px;
   }
 
   > div:last-child {
@@ -34,6 +42,5 @@ export const StyledButton = styled.div`
     text-transform: uppercase;
     color: #ffffff;
     mix-blend-mode: normal;
-    opacity: 0.5;
   }
 `

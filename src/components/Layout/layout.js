@@ -15,6 +15,7 @@ import PlanetViewer from "../PlanetViewer/PlanetViewer"
 import DataView from "../DataView/DataView"
 
 const Layout = ({ children, theme, path }) => {
+  const planetName = path.split("/")[1]
   const imagesPath = useStaticQuery(graphql`
     query SiteImageLinks {
       allFile {
@@ -34,18 +35,33 @@ const Layout = ({ children, theme, path }) => {
   const planetURL = imagesPath.allFile.nodes.filter(
     ({ name }) => name.includes("planet") && !name.includes("internal")
   )
+  console.log(planetURL)
   return (
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <NavBar path={path} />
-        <PlanetViewer
-          planetImages={planetURL}
-          internalImages={internalURL}
-          geologyImages={geologyURL}
-        />
-        {children}
-        <DataView />
+        <div
+          style={{
+            display: "flex",
+            alignContent: "center",
+            justifyContent: "space-around",
+          }}
+        >
+          <PlanetViewer
+            planetImages={planetURL.filter(({ name }) => {
+              return name.split("-")[1] === planetName
+            })}
+            internalImages={internalURL.filter(({ name }) => {
+              return name.split("-")[1] === planetName
+            })}
+            geologyImages={geologyURL.filter(({ name }) => {
+              return name.split("-")[1] === planetName
+            })}
+          />
+          {children}
+          <DataView planetName={planetName} />
+        </div>
       </ThemeProvider>
     </>
   )
