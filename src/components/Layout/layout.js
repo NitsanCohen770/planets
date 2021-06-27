@@ -13,6 +13,7 @@ import NavBar from "../NavBar/NabBar"
 import { ThemeProvider } from "styled-components"
 import PlanetViewer from "../PlanetViewer/PlanetViewer"
 import DataView from "../DataView/DataView"
+import DataFooter from "../DataFooter/DataFooter"
 
 const Layout = ({ children, theme, path }) => {
   const planetName = path.split("/")[1]
@@ -35,7 +36,10 @@ const Layout = ({ children, theme, path }) => {
   const planetURL = imagesPath.allFile.nodes.filter(
     ({ name }) => name.includes("planet") && !name.includes("internal")
   )
-  console.log(planetURL)
+  const iconSource = imagesPath.allFile.nodes.filter(
+    ({ name }) => name === "icon-source"
+  )
+  console.log(iconSource)
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -60,8 +64,12 @@ const Layout = ({ children, theme, path }) => {
             })}
           />
           {children}
-          <DataView planetName={planetName} />
+          <DataView
+            planetName={planetName}
+            iconSource={iconSource[0].publicURL}
+          />
         </div>
+        <DataFooter></DataFooter>
       </ThemeProvider>
     </>
   )

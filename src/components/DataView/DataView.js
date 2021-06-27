@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import PlanetData from "../../content/data.json"
 import { DataViewWrapper } from "./styles"
 import Button from "../Button/Button"
-const DataView = ({ planetName }) => {
+const DataView = ({ planetName, iconSource }) => {
   const currentPlanetData = PlanetData.filter(({ name }) => {
     return name.toLowerCase() === planetName
   })
@@ -15,6 +15,7 @@ const DataView = ({ planetName }) => {
       <div>
         Source:
         <a href={currentPlanetData[0].overview.source}> Wikipedia</a>
+        <img src={iconSource} />
       </div>
       <Button mainText="OVERVIEW" subText="01" />
       <Button mainText="INTERNAL STRUCTURE" subText="02" />

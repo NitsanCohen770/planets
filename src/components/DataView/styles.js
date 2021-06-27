@@ -42,5 +42,8 @@ export const DataViewWrapper = styled.div`
       color: #ffffff;
       mix-blend-mode: normal;
     }
+    > img {
+      margin-left: 10px;
+    }
   }
 `
