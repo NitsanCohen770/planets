@@ -16,7 +16,7 @@ import DataView from "../DataView/DataView"
 import DataFooter from "../DataFooter/DataFooter"
 
 const Layout = ({ children, theme, path }) => {
-  const planetName = path.split("/")[1]
+  const planetName = path?.split("/")[1]
   const imagesPath = useStaticQuery(graphql`
     query SiteImageLinks {
       allFile {

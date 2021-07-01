@@ -1,4 +1,3 @@
-import styled from "styled-components"
 import { createGlobalStyle } from "styled-components"
 import stars from "../../images/background-stars.svg"
 export const GlobalStyles = createGlobalStyle`
@@ -7,4 +6,5 @@ body {
     background-image: url(${stars});
 }
   
+
 `

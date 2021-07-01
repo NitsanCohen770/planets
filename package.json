@@ -7,7 +7,7 @@
   "dependencies": {
     "@reach/router": "^1.3.4",
     "babel-plugin-styled-components": "^1.12.0",
-    "gatsby": "^3.7.2",
+    "gatsby": "^3.4.0-webpack-split-fix.8",
     "gatsby-plugin-gatsby-cloud": "^2.7.1",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-image": "^1.7.1",
