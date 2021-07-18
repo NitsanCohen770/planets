@@ -1,27 +1,29 @@
 import React from "react"
-import PropTypes from "prop-types"
+import { useLocation } from "@reach/router"
 import data from "../../content/data.json"
 import PlanetInfo from "../PlanetInfo/PlanetInfo"
 import { DataFooterWrapper } from "./styles"
-const DataFooter = ({ chosenView }) => {
-  console.log(chosenView)
+const DataFooter = () => {
+  const location = useLocation()
+  const currentPlanetData = data.filter(
+    ({ name }) =>
+      name.toLocaleLowerCase() === location.pathname.split("/").join("")
+  )
+  console.log(currentPlanetData)
   return (
     <DataFooterWrapper>
       <PlanetInfo
         mainText="rotation time"
-        subText={data[chosenView].rotation}
+        subText={currentPlanetData[0].rotation}
       ></PlanetInfo>
       <PlanetInfo
         mainText="revolution time"
-        subText={data[chosenView].revolution}
+        subText={currentPlanetData[0].revolution}
       ></PlanetInfo>
-      <PlanetInfo
-        mainText="radius"
-        subText={data[chosenView].radius}
-      ></PlanetInfo>
+      <PlanetInfo mainText="radius" subText={data[0].radius}></PlanetInfo>
       <PlanetInfo
         mainText="average temperature"
-        subText={data[chosenView].temperature}
+        subText={currentPlanetData[0].temperature}
       ></PlanetInfo>
     </DataFooterWrapper>
   )

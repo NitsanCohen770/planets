@@ -10,10 +10,28 @@ const PlanetViewer = ({
   const planetSVG = [planetImages, internalImages, geologyImages]
   return (
     <div style={{ display: "inline", marginTop: "70px" }}>
-      <img
-        src={planetSVG[currentView][0].publicURL}
-        alt={planetSVG[currentView][0].name}
-      />
+      {currentView === 2 ? (
+        <div style={{ position: "relative" }}>
+          {" "}
+          <img src={planetSVG[0][0].publicURL} alt={planetSVG[0][0].name} />
+          <img
+            style={{
+              position: "absolute",
+              left: "220px",
+              bottom: "-60px",
+              width: "200px",
+              height: "250px",
+            }}
+            src={planetSVG[currentView][0].publicURL}
+            alt={planetSVG[currentView][0].name}
+          />
+        </div>
+      ) : (
+        <img
+          src={planetSVG[currentView][0].publicURL}
+          alt={planetSVG[currentView][0].name}
+        />
+      )}
     </div>
   )
 }
