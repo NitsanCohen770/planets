@@ -16,6 +16,7 @@ import DataView from "../DataView/DataView"
 import DataFooter from "../DataFooter/DataFooter"
 
 const Layout = ({ children, theme, path }) => {
+  const [chosenView, setChosenView] = React.useState(0)
   const planetName = path?.split("/")[1]
   const imagesPath = useStaticQuery(graphql`
     query SiteImageLinks {
@@ -39,7 +40,7 @@ const Layout = ({ children, theme, path }) => {
   const iconSource = imagesPath.allFile.nodes.filter(
     ({ name }) => name === "icon-source"
   )
-  console.log(iconSource)
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -53,6 +54,7 @@ const Layout = ({ children, theme, path }) => {
           }}
         >
           <PlanetViewer
+            currentView={chosenView}
             planetImages={planetURL.filter(({ name }) => {
               return name.split("-")[1] === planetName
             })}
@@ -65,11 +67,13 @@ const Layout = ({ children, theme, path }) => {
           />
           {children}
           <DataView
+            setView={setChosenView}
+            currentView={chosenView}
             planetName={planetName}
             iconSource={iconSource[0].publicURL}
           />
         </div>
-        <DataFooter></DataFooter>
+        <DataFooter chosenView={chosenView} />
       </ThemeProvider>
     </>
   )

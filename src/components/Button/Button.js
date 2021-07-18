@@ -2,17 +2,22 @@ import React from "react"
 import PropTypes from "prop-types"
 import { StyledButton } from "./Styles"
 
-const Button = ({ size, width, height, mainText, subText }) => {
-  const dataChangeHandler = () => {
-    const section = mainText
-    const imageIndex = subText
-  }
+const Button = ({
+  size,
+  width,
+  height,
+  mainText,
+  subText,
+  isActive,
+  ...props
+}) => {
   return (
     <StyledButton
-      onClick={dataChangeHandler}
+      {...props}
       size={size}
       width={width}
       height={height}
+      isActive={isActive}
     >
       <div>{subText}</div>
       <div>{mainText}</div>
