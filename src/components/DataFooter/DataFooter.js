@@ -9,7 +9,7 @@ const DataFooter = () => {
     ({ name }) =>
       name.toLocaleLowerCase() === location.pathname.split("/").join("")
   )
-  console.log(currentPlanetData)
+
   return (
     <DataFooterWrapper>
       <PlanetInfo

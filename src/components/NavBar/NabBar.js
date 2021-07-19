@@ -23,7 +23,7 @@ const NavBar = ({ path }) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: device.mobileL,
   })
-  console.log(isDesktopOrLaptop)
+
   const fixedPath = path.split("/").join("").toLowerCase()
   const themeSelector = themes[`${fixedPath}Theme`].color
   const activeStyles = { borderTop: `solid 4px ${themeSelector}` }

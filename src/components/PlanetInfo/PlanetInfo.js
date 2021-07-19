@@ -4,8 +4,10 @@ import { PlanetInfoWrapper } from "./style"
 const PlanetInfo = ({ mainText, subText }) => {
   return (
     <PlanetInfoWrapper>
-      <div>{mainText}</div>
-      <div>{subText}</div>
+      <div>
+        <div>{mainText}</div>
+        <div>{subText}</div>
+      </div>
     </PlanetInfoWrapper>
   )
 }

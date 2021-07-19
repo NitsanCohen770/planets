@@ -18,7 +18,7 @@ export const StyledUnorderedList = styled.ul`
     display: grid;
     grid-auto-flow: column;
     grid-gap: 5px;
-    height: 70px;
+    height: 159px;
     width: 100%;
   }
   @media ${device.mobileL} {
@@ -59,6 +59,11 @@ export const StyledUnorderedList = styled.ul`
       grid-row: 1;
       justify-self: center;
       margin: 0 auto;
+    }
+    > li div {
+      @media ${device.mobileL} {
+        margin-right: 25px;
+      }
     }
   }
 `

@@ -1,5 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { device } from "../../screenSizes"
+import { useMediaQuery } from "react-responsive"
 import { useLocation } from "@reach/router"
 
 const PlanetViewer = ({
@@ -8,11 +10,20 @@ const PlanetViewer = ({
   geologyImages,
   currentView,
 }) => {
+  const isTablet = useMediaQuery({
+    query: device.tablet,
+  })
   const location = useLocation()
   console.log(location.pathname)
   const planetSVG = [planetImages, internalImages, geologyImages]
   return (
-    <div style={{ display: "inline", marginTop: "70px" }}>
+    <div
+      style={
+        !isTablet
+          ? { display: "inline", marginTop: "70px" }
+          : { display: "block", textAlign: "center", marginTop: "70px" }
+      }
+    >
       {currentView === 2 ? (
         <div style={{ position: "relative" }}>
           {" "}
@@ -22,8 +33,8 @@ const PlanetViewer = ({
               location.pathname !== "/saturn" || location.path === "/jupiter"
                 ? {
                     position: "absolute",
-                    left: "25%",
-                    bottom: "-40%",
+                    left: "30%",
+                    bottom: "-20%",
                     width: "200px",
                     height: "250px",
                   }

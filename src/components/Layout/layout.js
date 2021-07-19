@@ -1,13 +1,8 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
 import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { device } from "../../screenSizes"
+import { useMediaQuery } from "react-responsive"
 import { GlobalStyles } from "./globalStlyes"
 import NavBar from "../NavBar/NabBar"
 import { ThemeProvider } from "styled-components"
@@ -16,6 +11,12 @@ import DataView from "../DataView/DataView"
 import DataFooter from "../DataFooter/DataFooter"
 
 const Layout = ({ children, theme, path }) => {
+  const isDesktop = useMediaQuery({
+    query: device.desktop,
+  })
+  const isTablet = useMediaQuery({
+    query: device.tablet,
+  })
   const [chosenView, setChosenView] = React.useState(0)
   const planetName = path?.split("/")[1]
   const imagesPath = useStaticQuery(graphql`
@@ -40,18 +41,23 @@ const Layout = ({ children, theme, path }) => {
   const iconSource = imagesPath.allFile.nodes.filter(
     ({ name }) => name === "icon-source"
   )
-
+  console.log(isDesktop)
+  console.log(isTablet)
   return (
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <NavBar path={path} />
         <div
-          style={{
-            display: "flex",
-            alignContent: "center",
-            justifyContent: "space-around",
-          }}
+          style={
+            !isTablet
+              ? {
+                  display: "flex",
+                  alignContent: "center",
+                  justifyContent: "space-around",
+                }
+              : null
+          }
         >
           <PlanetViewer
             currentView={chosenView}
@@ -65,6 +71,7 @@ const Layout = ({ children, theme, path }) => {
               return name.split("-")[1] === planetName
             })}
           />
+
           {children}
           <DataView
             setView={setChosenView}
