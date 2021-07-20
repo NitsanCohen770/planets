@@ -38,12 +38,17 @@ export const StyledUnorderedList = styled.ul`
     }
     > div {
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding-bottom: 17px;
+      padding-bottom: 25px;
+
+      #text {
+        margin-left: 5px;
+      }
     }
 
     > div img {
       display: inline;
       float: right;
+      padding-top: 10px;
     }
   }
   div {
