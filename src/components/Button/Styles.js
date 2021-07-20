@@ -16,9 +16,20 @@ export const StyledButton = styled.div`
     width: 281px;
     height: 40px;
   }
+  @media ${device.mobileL} {
+    position: absolute;
+    background-color: transparent;
+    width: calc(100% / 3);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
   &:hover {
     background-color: rgba(216, 216, 216, 0.2);
+    @media ${device.mobileL} {
+      background-color: transparent;
+    }
   }
+
   > div:first-child {
     display: block;
     margin-right: 25px;

@@ -2,8 +2,13 @@ import React from "react"
 import PropTypes from "prop-types"
 import PlanetData from "../../content/data.json"
 import { DataViewWrapper } from "./styles"
+import { useMediaQuery } from "react-responsive"
+import { device } from "../../screenSizes"
 import Button from "../Button/Button"
 const DataView = ({ planetName, iconSource, setView, currentView }) => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: device.mobileL,
+  })
   const currentPlanetData = PlanetData.filter(({ name }) => {
     return name.toLowerCase() === planetName
   })
@@ -33,6 +38,7 @@ const DataView = ({ planetName, iconSource, setView, currentView }) => {
       </div>
       <div>
         <Button
+          style={{ top: "12%", left: "0" }}
           mainText="OVERVIEW"
           subText="01"
           onClick={() => setView(0)}
@@ -40,13 +46,15 @@ const DataView = ({ planetName, iconSource, setView, currentView }) => {
           width="2"
         />
         <Button
-          mainText="INTERNAL STRUCTURE"
+          style={{ top: "12%", right: "33.33%" }}
+          mainText={isDesktopOrLaptop ? "INTERNAL" : "INTERNAL STRUCTURE"}
           subText="02"
           onClick={() => setView(1)}
           isActive={currentView === 1}
         />
         <Button
-          mainText="SURFACE GEOLOGY"
+          style={{ top: "12%", right: "0" }}
+          mainText={isDesktopOrLaptop ? "SURFACE" : "SURFACE GEOLOGY"}
           subText="03"
           onClick={() => setView(2)}
           isActive={currentView === 2}

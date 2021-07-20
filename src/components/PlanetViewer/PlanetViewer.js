@@ -13,6 +13,9 @@ const PlanetViewer = ({
   const isTablet = useMediaQuery({
     query: device.tablet,
   })
+  const isMobile = useMediaQuery({
+    query: device.mobileL,
+  })
   const location = useLocation()
   console.log(location.pathname)
   const planetSVG = [planetImages, internalImages, geologyImages]
@@ -27,7 +30,11 @@ const PlanetViewer = ({
       {currentView === 2 ? (
         <div style={{ position: "relative" }}>
           {" "}
-          <img src={planetSVG[0][0].publicURL} alt={planetSVG[0][0].name} />
+          <img
+            style={isMobile ? { width: "90%", height: "90%" } : {}}
+            src={planetSVG[0][0].publicURL}
+            alt={planetSVG[0][0].name}
+          />
           <img
             style={
               location.pathname !== "/saturn" || location.path === "/jupiter"
@@ -52,6 +59,7 @@ const PlanetViewer = ({
         </div>
       ) : (
         <img
+          style={isMobile ? { width: "50%", height: "50%" } : {}}
           src={planetSVG[currentView][0].publicURL}
           alt={planetSVG[currentView][0].name}
         />

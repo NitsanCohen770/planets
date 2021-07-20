@@ -11,9 +11,25 @@ export const PlanetInfoWrapper = styled.div`
     width: 164px;
     height: 88px;
   }
+  @media ${device.mobileL} {
+    display: block;
+    width: 327px;
+    height: 48px;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 8px;
+  }
   > div:first-child {
     margin-left: 15px;
     margin-top: 16px;
+    @media ${device.mobileL} {
+      display: flex;
+      font-size: 8px;
+      margin: auto;
+      width: 327px;
+      height: 48px;
+      align-items: center;
+    }
     > div:first-child {
       display: inline-block;
       height: 25px;
@@ -32,6 +48,13 @@ export const PlanetInfoWrapper = styled.div`
         line-height: 16px;
         letter-spacing: 0.727273px;
       }
+      @media ${device.mobileL} {
+        display: inline-block;
+        font-size: 8px;
+        line-height: 16px;
+        height: 16px;
+        margin-left: 24px;
+      }
     }
     > div:last-child {
       display: block;
@@ -48,6 +71,13 @@ export const PlanetInfoWrapper = styled.div`
         font-size: 24px;
         line-height: 31px;
         letter-spacing: -0.9px;
+      }
+      @media ${device.mobileL} {
+        display: block;
+        font-size: 20px;
+        height: 35px;
+        margin-left: auto;
+        margin-right: 24px;
       }
     }
   }

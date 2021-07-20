@@ -1,5 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { useMediaQuery } from "react-responsive"
+import { device } from "../../screenSizes"
 import { StyledButton } from "./Styles"
 
 const Button = ({
@@ -11,6 +13,10 @@ const Button = ({
   isActive,
   ...props
 }) => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: device.mobileL,
+  })
+
   return (
     <StyledButton
       {...props}
@@ -19,7 +25,7 @@ const Button = ({
       height={height}
       isActive={isActive}
     >
-      <div>{subText}</div>
+      {!isDesktopOrLaptop && <div>{subText}</div>}
       <div>{mainText}</div>
     </StyledButton>
   )

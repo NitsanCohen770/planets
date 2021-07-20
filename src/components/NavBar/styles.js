@@ -32,6 +32,9 @@ export const StyledUnorderedList = styled.ul`
     }
     li {
       line-height: 65px;
+      @media ${device.mobileL} {
+        display: none;
+      }
     }
     > div {
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);

@@ -6,6 +6,11 @@ export const DataViewWrapper = styled.div`
     display: flex;
     justify-content: space-around;
   }
+  @media ${device.mobileL} {
+    display: block;
+    text-align: center;
+    margin-top: 67px;
+  }
   > div:first-child {
     > h1 {
       width: 158px;
@@ -21,6 +26,9 @@ export const DataViewWrapper = styled.div`
         font-size: 48px;
         line-height: 62px;
         margin-bottom: 0;
+      }
+      @media ${device.mobileL} {
+        margin: auto;
       }
     }
     > article {
@@ -39,6 +47,9 @@ export const DataViewWrapper = styled.div`
         height: 110px;
         font-size: 11px;
         line-height: 22px;
+      }
+      @media ${device.mobileL} {
+        margin: auto;
       }
     }
     > div:nth-child(3) {
