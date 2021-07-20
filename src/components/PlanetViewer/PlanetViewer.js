@@ -31,26 +31,29 @@ const PlanetViewer = ({
         <div style={{ position: "relative" }}>
           {" "}
           <img
-            style={isMobile ? { width: "90%", height: "90%" } : {}}
+            style={
+              isMobile ? { width: "50%", height: "50%", marginTop: "76px" } : {}
+            }
             src={planetSVG[0][0].publicURL}
             alt={planetSVG[0][0].name}
           />
           <img
             style={
-              location.pathname !== "/saturn" || location.path === "/jupiter"
+              location.pathname !== "/saturn" ||
+              (location.path === "/jupiter" && isMobile)
                 ? {
                     position: "absolute",
-                    left: "30%",
-                    bottom: "-20%",
-                    width: "200px",
-                    height: "250px",
+                    left: "36%",
+                    bottom: "-15%",
+                    width: "100px",
+                    height: "120px",
                   }
                 : {
                     position: "absolute",
-                    left: "35%",
-                    bottom: "-10%",
-                    width: "200px",
-                    height: "250px",
+                    left: "36%",
+                    bottom: "-15%",
+                    width: "100px",
+                    height: "120px",
                   }
             }
             src={planetSVG[currentView][0].publicURL}
@@ -59,7 +62,9 @@ const PlanetViewer = ({
         </div>
       ) : (
         <img
-          style={isMobile ? { width: "50%", height: "50%" } : {}}
+          style={
+            isMobile ? { width: "50%", height: "50%", marginTop: "76px" } : {}
+          }
           src={planetSVG[currentView][0].publicURL}
           alt={planetSVG[currentView][0].name}
         />

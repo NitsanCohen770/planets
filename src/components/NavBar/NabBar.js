@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { StyledUnorderedList } from "./styles"
 import NavLink from "../NavLink/NavLink"
 import Hamburger from "../../images/icon-hamburger.svg"
@@ -19,20 +19,23 @@ const linksList = [
   "uranus",
 ]
 
-const NavBar = ({ path }) => {
+const NavBar = ({ path, mobileNavbarToggle, isNavbarOpen }) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: device.mobileL,
   })
-
   const fixedPath = path.split("/").join("").toLowerCase()
   const themeSelector = themes[`${fixedPath}Theme`].color
   const activeStyles = { borderTop: `solid 4px ${themeSelector}` }
   return (
     <>
-      <StyledUnorderedList>
+      <StyledUnorderedList mobileNavbar={isNavbarOpen}>
         <div>
           THE PLANETS
-          <img src={Hamburger} alt="menu button" />
+          <img
+            onClick={() => mobileNavbarToggle(prevState => !prevState)}
+            src={Hamburger}
+            alt="menu button"
+          />
         </div>
         {linksList.map(link => (
           <NavLink

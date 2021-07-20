@@ -11,6 +11,7 @@ import DataView from "../DataView/DataView"
 import DataFooter from "../DataFooter/DataFooter"
 
 const Layout = ({ children, theme, path }) => {
+  const [toggleNavbar, setToggleNavbar] = React.useState(false)
   const isDesktop = useMediaQuery({
     query: device.desktop,
   })
@@ -41,46 +42,53 @@ const Layout = ({ children, theme, path }) => {
   const iconSource = imagesPath.allFile.nodes.filter(
     ({ name }) => name === "icon-source"
   )
-  console.log(isDesktop)
-  console.log(isTablet)
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <NavBar path={path} />
-        <div
-          style={
-            !isTablet
-              ? {
-                  display: "flex",
-                  alignContent: "center",
-                  justifyContent: "space-around",
-                }
-              : null
-          }
-        >
-          <PlanetViewer
-            currentView={chosenView}
-            planetImages={planetURL.filter(({ name }) => {
-              return name.split("-")[1] === planetName
-            })}
-            internalImages={internalURL.filter(({ name }) => {
-              return name.split("-")[1] === planetName
-            })}
-            geologyImages={geologyURL.filter(({ name }) => {
-              return name.split("-")[1] === planetName
-            })}
-          />
+        <NavBar
+          path={path}
+          mobileNavbarToggle={setToggleNavbar}
+          isNavbarOpen={toggleNavbar}
+        />
+        {!toggleNavbar && (
+          <>
+            <div
+              style={
+                !isTablet
+                  ? {
+                      display: "flex",
+                      alignContent: "center",
+                      justifyContent: "space-around",
+                    }
+                  : null
+              }
+            >
+              <PlanetViewer
+                currentView={chosenView}
+                planetImages={planetURL.filter(({ name }) => {
+                  return name.split("-")[1] === planetName
+                })}
+                internalImages={internalURL.filter(({ name }) => {
+                  return name.split("-")[1] === planetName
+                })}
+                geologyImages={geologyURL.filter(({ name }) => {
+                  return name.split("-")[1] === planetName
+                })}
+              />
 
-          {children}
-          <DataView
-            setView={setChosenView}
-            currentView={chosenView}
-            planetName={planetName}
-            iconSource={iconSource[0].publicURL}
-          />
-        </div>
-        <DataFooter chosenView={chosenView} />
+              {children}
+              <DataView
+                setView={setChosenView}
+                currentView={chosenView}
+                planetName={planetName}
+                iconSource={iconSource[0].publicURL}
+              />
+            </div>
+            <DataFooter chosenView={chosenView} />{" "}
+          </>
+        )}
       </ThemeProvider>
     </>
   )

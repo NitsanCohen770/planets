@@ -33,7 +33,7 @@ export const StyledUnorderedList = styled.ul`
     li {
       line-height: 65px;
       @media ${device.mobileL} {
-        display: none;
+        display: ${({ mobileNavbar }) => (mobileNavbar ? "block" : "none")};
       }
     }
     > div {
